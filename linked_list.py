@@ -27,6 +27,7 @@ class LinkedList:
                 s = Node(data)
                 s.next = node.next
                 node.next = s
+                return
             node = node.next
         if node.data == v:
             node.next = Node(data)
@@ -50,38 +51,21 @@ class LinkedList:
         node = self.head
         s = ""
         while node.next:
-            s += "%.2f, " % (node.data)
+            s += "(%s, %.2f), " % (node.data[0], node.data[1])
             node = node.next
-        s += "%.2f" % (node.data)
+        s += "(%s, %.2f), " % (node.data[0], node.data[1])
         print(s)
             
     def search(self, data) -> bool:
         node = self.head
         while node.next:
-            if node.data == data:
+            if node.data[0] == data:
                 return True
             node = node.next
-        if node.data == data:
+        if node.data[0] == data:
             return True
         return False
         
-
-
-
-
-
-
-l = LinkedList()
-for i in range(1, 14):
-    l.add(i)
-print(l.search(13))
-l.insert(8, 9.5)
-l.log()
-l.remove(1)
-l.log()
-l.remove(13)
-l.log()
-
 
 
 
