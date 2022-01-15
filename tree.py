@@ -66,27 +66,22 @@ class Tree:
 
                 #child Node가 2개 있을때
                 else:
-                    # 최소값 찾기
-                    parent_min_node = self.current_node
+                    # 오른쪽에서 가장작은값 찾기
                     min_node = self.current_node.right
+                    parent_min_node = self.current_node
+
                     while min_node.left:
                         parent_min_node = min_node
                         min_node = min_node.left
-                    
-                    # ---------------------------------------------
-                    
+                    min_node.left = self.current_node.left
+
                     if self.current_node != parent_min_node:
                         parent_min_node.left = min_node.right
                         min_node.right = self.current_node.right
-                    
-                    min_node.left = self.current_node.left    
-                    
-
-                    if self.parent_node.value < value:
-                        self.parent_node.right = min_node
-                    else: self.parent_node.left = min_node
-
+                        
+                    self.parent_node.right = min_node
                 return True
+
             elif value < self.current_node.value:
                 self.parent_node = self.current_node
                 self.current_node = self.current_node.left
@@ -103,15 +98,22 @@ class Tree:
 
 
 tree = Tree()
-tree.insert(1)
-tree.insert(6)
-tree.insert(4)
-tree.insert(2)
-tree.insert(5)
-tree.insert(10)
-tree.insert(9)
-tree.insert(15)
 tree.insert(7)
+tree.insert(3)
+tree.insert(1)
+tree.insert(5)
+tree.insert(4)
+tree.insert(6)
+tree.insert(10)
 tree.insert(8)
-tree.remove(4)
+tree.insert(9)
+tree.insert(13)
+tree.insert(11)
+tree.insert(19)
+
+tree.remove(10)
+
+
+
+
 print(tree.search(5))
